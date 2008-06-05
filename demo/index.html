@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html" />
+  <title>prototype-based humanized messages</title>
+  <link rel="stylesheet" href="humanmsg.css" type="text/css" media="screen" />
+  
+  <script src="prototype.js" type="text/javascript"></script>
+  <script src="lowpro.js" type="text/javascript"></script>
+  <script src="effects.js" type="text/javascript"></script>
+  <script src="../transparent_messaging.js" type="text/javascript"></script>
+  
+  <style type="text/css">
+    p.links {
+      position: absolute;
+      font: 2em Helvetica, Arial, Sans-Serif;
+      top: 40%;
+      left: 50%;
+      width: 400px;
+      margin-left: -200px;
+      text-align: center;      
+    }
+    
+    p.links a {
+      text-decoration: none;
+      color: #888;
+    }
+    
+    p.links a:hover {
+      color: #222;
+    }
+    
+    p.links a.home {
+      font-size: 10px;
+      line-height: 30px;
+    }
+  </style>
+  
+  <script type="text/javascript">
+    Event.onReady(function() { return MessageLogger.setup(); });
+    Event.onReady(function() { return HumaneMessager.setup(MessageLogger); }); //MessageLogger
+    
+    Event.addBehavior({
+      'a.showmessage:click':function() {
+        HumaneMessager.display_message('<strong>Success:</strong> <span class="indent">You clicked \'' + this.textContent + '\'</span>');
+        return false;
+      }      
+    });
+  </script>
+</head>
+<body>
+  <h1>Transparent/Humanized Message Pattern</h1>
+  <p>
+    Thanks to: <a href="http://www.humanized.com/weblog/2006/09/11/monolog_boxes_and_transparent_messages/">Aza Raskin</a> @ humanized and to <a href="http://code.google.com/p/humanmsg/">Michael Heilemann</a> for the jQuery implementation that prompted this (and whom designed the demo).
+  </p>
+  <p>
+    This is a <a href="http://prototypejs.org">prototype</a> implementation of the same concept. jQuery's got the basic effects and addBehavior stuff baked in, so those are available but optional here (via scriptaculous and lowpro, naturally). One thing I did was seperate out the message logging functionality entirely. Do whatever you need to do with regards to a logger -- so long as it responds to a <code>write(msg)</code> method we're in business.
+  </p>
+  
+  <p class="links">
+    <a href="#" class="showmessage">Klaatu</a>
+    <a href="#" class="showmessage">Barada</a>
+    <a href="#" class="showmessage">Nikto</a><br />
+    <a href="http://humanmsg.googlecode.com" class="home">Humanized Messages</a>
+  </p>
+</body>
+</html>
